@@ -38,7 +38,7 @@
         "http://www.bbc.co.uk/sport/*"
       ],
       "js": [
-        "src/inject/inject.js"
+        "js/jquery/jquery.js", "src/inject/inject.js"
       ]
     }
   ]
