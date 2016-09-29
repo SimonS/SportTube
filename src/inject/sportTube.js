@@ -1,20 +1,9 @@
-
 var readyStateCheckInterval = setInterval(function() {
 	if (document.readyState === "complete") {
-		clearInterval(readyStateCheckInterval);
-		createPlaceHolderElement();
-		getMedia().then(attachEvents);
+		clearInterval(readyStateCheckInterval)
+		getMedia().then(attachEvents)
 	}
-}, 10);
-var mediaPlayer;
-
-function createPlaceHolderElement() {
-    require(['jquery-2.2'], function ($) {
-        if (!document.getElementById('SportTubePlaceholder')) {
-            $('body').append('<div id="SportTubePlaceholder"></div>')
-    	}
-    })
-}
+}, 10), mediaPlayer
 
 function getMedia() {
 	return Promise.resolve(Array.from(
@@ -37,18 +26,16 @@ function attachEvents(targets) {
                             .find('.sp-media-asset--lead .sp-media-asset__smp')
                             .data('media-vpid')
 
-                        $('#SportTubePlaceholder').addClass('active')
-                        playVideo(destVpid)
+                        parent.postMessage({type: "sportTube", value: destVpid},"http://www.bbc.co.uk")
                     }
                 })
             })
-        });
-        Promise.resolve(targets);
+        })
     })
 }
 
 function playVideo(pid) {
-	window.require(['bump-3'], function(bmp) {
+	window.require(['bump-3', 'jquery-2'], function(bmp, $) {
         var settings = {
             product: 'sport',
             responsive: true,
@@ -58,8 +45,18 @@ function playVideo(pid) {
                     versionID: pid
                 }]
             }
-        };
-        mediaPlayer = bmp('#SportTubePlaceholder').player(settings);
-        mediaPlayer.load();
-	});
+        }
+        $('#st-video').addClass('active')
+
+        mediaPlayer = bmp('#st-video').player(settings)
+        mediaPlayer.load()
+	})
+}
+
+if (self === top) { // we're in the parent, listen and react to messages
+    window.addEventListener('message', function (e) {
+        if (e.data.type === "sportTube") {
+            playVideo(e.data.value)
+        }
+    })
 }

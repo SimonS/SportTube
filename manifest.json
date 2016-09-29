@@ -40,7 +40,8 @@
       ],
       "js": [
         "js/jquery/jquery.js", "src/inject/inject.js"
-      ]
+      ],
+      "all_frames": true
     }
   ]
 }
