@@ -1,8 +1,13 @@
 #SportTubePlaceholder {
     background: red;
     bottom: 0;
+    display: none;
     height: 200px;
     position: fixed;
     right: 0;
     width: 200px;
+}
+
+#SportTubePlaceholder.active {
+    display: block;
 }
