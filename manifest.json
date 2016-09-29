@@ -27,7 +27,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.google.com/*"
+        "http://www.bbc.co.uk/sport/*"
       ],
       "css": [
         "src/inject/inject.css"
@@ -35,7 +35,7 @@
     },
     {
       "matches": [
-        "https://www.google.com/*"
+        "http://www.bbc.co.uk/sport/*"
       ],
       "js": [
         "src/inject/inject.js"
