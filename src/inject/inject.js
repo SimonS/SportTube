@@ -24,7 +24,8 @@ function loadScript(href, callback) {
 			callback()
 		}
 	}
-	(document.head || document.documentElement).appendChild(s)
+
+	document.head.appendChild(s)
 }
 
 loadScript(chrome.extension.getURL('src/inject/sportTube.js'))

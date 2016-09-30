@@ -35,7 +35,7 @@ function attachEvents(targets) {
 }
 
 function playVideo(pid) {
-	window.require(['bump-3', 'jquery-2'], function(bmp, $) {
+	window.require(['bump-3', 'jquery-2.2'], function(bmp, $) {
         var settings = {
             product: 'sport',
             responsive: true,
